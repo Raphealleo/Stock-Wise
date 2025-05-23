@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Home from "/src/pages/Home";
 function PersonForm({ addPerson }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -6,7 +7,6 @@ function PersonForm({ addPerson }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !phone) return;
-
     const newPerson = {
       id: Date.now().toString(),
       name,
@@ -35,4 +35,27 @@ function PersonForm({ addPerson }) {
   );
 }
 
-export default PersonForm;
+const [paid, setPaid] = useState(false);
+
+// Inside handleSubmit:
+const newPerson = {
+  id: Date.now().toString(),
+  name,
+  phone,
+  paid
+};
+
+<label>
+  <input
+    type="checkbox"
+    checked={paid}
+    onChange={(e) => setPaid(e.target.checked)}
+  />
+  Paid
+</label>
+
+
+
+
+
+export default personform;
