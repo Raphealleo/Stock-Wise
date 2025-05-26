@@ -1,19 +1,8 @@
-
 import React, { useState } from 'react';
-import PersonList from "./PersonList.jsx";
-import PersonForm from "./personform.jsx";
-
-import './App.jsx';
-
-
-
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from "./pages/Navbar.jsx";
-import Home from "./pages/Home.jsx";
-import About from "./pages/About.jsx";
-import History from './pages/History.jsx';
 import './App.css';
+import Navbar from './Navbar';
+import PersonForm from './PersonForm';
+import PersonList from './PersonList';
 
 function App() {
   const [people, setPeople] = useState([]);
@@ -22,37 +11,24 @@ function App() {
     setPeople((prev) => [...prev, person]);
   };
 
-  
-
-
-function App() {
-  const [people, setPeople] = useState([]);
+  const paidPeople = people.filter(person => person.paid);
+  const notPaidPeople = people.filter(person => !person.paid);
 
   return (
-    <div className="App">
-      <h1>People Directory</h1>
-      {/* Form and List components will go here */}
+    <div className="app-container">
+      <Navbar />
+      <div className="main-content">
+        <h1>ADETOPZY INTERGRATED SERVICES</h1>
+        <PersonForm addPerson={addPerson} />
+
+        <h2>Paid People</h2>
+        <PersonList people={paidPeople} />
+
+        <h2>Not Paid People</h2>
+        <PersonList people={notPaidPeople} />
+      </div>
     </div>
   );
 }
 
-
-
-
-
-  return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home people={people} addPerson={addPerson} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/history" element={<History />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
-
 export default App;
-
